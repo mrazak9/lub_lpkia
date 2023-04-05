@@ -20,7 +20,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'google_id'
+        'google_id',
+        'role'
     ];
 
     /**
@@ -47,4 +48,14 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function lecturer()
+    {
+        return $this->hasOne(Lecturer::class, 'id_user');
+    }
+
+    public function student()
+    {
+        return $this->hasOne(Student::class, 'id_user');
+    }
 }
