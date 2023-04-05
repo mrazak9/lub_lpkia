@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GoogleController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,6 +21,12 @@ Route::get('/', function () {
 Route::get('auth/google', [GoogleController::class, 'redirectToGoogle']);
 Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
 // END OF GOOGLE ROUTE
-Auth::routes();
+// Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::resource('means', 'App\Http\Controllers\MeanController');
+Route::resource('answers', 'App\Http\Controllers\AnswerController');
+Route::resource('answer_details', 'App\Http\Controllers\AnswerDetailController');
+Route::resource('students', StudentController::class);
+
