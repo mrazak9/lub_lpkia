@@ -13,6 +13,7 @@ class Lecturer extends Model
     protected $fillable = [
         'id_user',
         'prodi',
+        'code',
     ];
 
     public function user()

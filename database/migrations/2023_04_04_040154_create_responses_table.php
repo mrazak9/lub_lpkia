@@ -29,6 +29,7 @@ class CreateResponsesTable extends Migration
             $table->string('question9', 3)->nullable();
             $table->string('question10', 3)->nullable();
             $table->string('question11', 3)->nullable();
+            $table->string('question12', 3)->nullable();
             $table->string('question13', 3)->nullable();
             $table->string('question14', 3)->nullable();
             $table->string('question15', 3)->nullable();

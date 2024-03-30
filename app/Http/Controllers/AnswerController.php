@@ -39,7 +39,7 @@ class AnswerController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:30',
-            'type' => 'required|in:text,selection',
+            'type' => 'required|string',
             'notes' => 'nullable|string'
         ]);
 

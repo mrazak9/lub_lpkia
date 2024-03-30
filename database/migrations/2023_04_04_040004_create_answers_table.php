@@ -15,8 +15,8 @@ class CreateAnswersTable extends Migration
     {
         Schema::create('answers', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 30);
-            $table->enum('type', ['text', 'selection']);
+            $table->string('name', 50);
+            $table->string('type', 50);
             $table->string('notes')->nullable();
             $table->timestamps();
             $table->softDeletes();

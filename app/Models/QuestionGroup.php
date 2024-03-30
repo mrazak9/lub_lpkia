@@ -10,10 +10,15 @@ class QuestionGroup extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['name', 'notes'];
+    protected $fillable = ['name', 'notes', 'id_question'];
 
-    public function questions()
+    public function question_details()
     {
-        return $this->hasMany(Question::class, 'id_question_group');
+        return $this->hasMany(QuestionDetail::class, 'id_question_group');
+    }
+
+    public function question()
+    {
+        return $this->belongsTo(Question::class, 'id_question');
     }
 }

@@ -16,6 +16,7 @@ class CreateQuestionGroupsTable extends Migration
         Schema::create('question_groups', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->foreignId('id_question')->constrained('questions')->onDelete('cascade');
             $table->string('notes')->nullable();
             $table->timestamps();
             $table->softDeletes();

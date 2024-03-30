@@ -12,18 +12,34 @@ class Schedule extends Model
 
     protected $fillable = [
         'courses_name',
-        'id_dosen',
+        'id_lecturer',
         'periode',
         'classroom',
     ];
 
     public function lecturer()
     {
-        return $this->belongsTo(Lecturer::class, 'id_dosen');
+        return $this->belongsTo(Lecturer::class, 'id_lecturer');
     }
 
-    public function questions()
+    public function responses()
     {
-        return $this->hasMany(Question::class, 'id_schedule');
+        return $this->hasMany(Response::class, 'id_schedule');
     }
+
+    public function response_statuses()
+    {
+        return $this->hasMany(ResponseStatus::class, 'id_schedule');
+    }
+
+    static function getPeriod()
+    {
+        $year = date('Y');
+        $period = [];
+        for ($i = $year-2; $i <= $year+2; $i++) {
+            $period[$i.'-Ganjil'] = $i.'-Ganjil';
+            $period[$i.'-Genap'] = $i.'-Genap';
+        }
+        return $period;
+    }    
 }

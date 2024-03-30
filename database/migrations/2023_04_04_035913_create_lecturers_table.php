@@ -16,7 +16,9 @@ class CreateLecturersTable extends Migration
         Schema::create('lecturers', function (Blueprint $table) {
             $table->id();
             $table->foreignId('id_user')->constrained('users')->onDelete('cascade');
+            $table->string('code')->nullable();
             $table->string('prodi')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

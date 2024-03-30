@@ -18,6 +18,11 @@ class Answer extends Model
 
     public function questionDetails()
     {
-        return $this->hasMany(QuestionDetail::class);
+        return $this->hasMany(QuestionDetail::class, 'id_answer');
+    }
+
+    public function answer_detail()
+    {
+        return $this->hasMany(AnswerDetail::class, 'id_answer');
     }
 }

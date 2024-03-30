@@ -99,7 +99,6 @@
                                                 </tr>
                                             </thead>
                                             <tbody class="bg-white">
-
                                                 @forelse ($answerDetails as $answerDetail)
                                                     <tr class="text-gray-700 border-b">
                                                         <td class="px-1 py-5 text-sm w-2/8">

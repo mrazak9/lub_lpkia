@@ -63,7 +63,8 @@
                                                 @endif
                                                 <option value=''> -- Pilih Type Jawaban -- </option>
                                                 <option value='text'> Text</option>
-                                                <option value='selection'> Multiple Choice</option>
+                                                <option value='selection'> Single Choice</option>
+                                                <option value='multi_selection'> Multiple Choice</option>
                                             </select>
                                         </div>
 

@@ -11,18 +11,18 @@ class RecaptDetail extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'id_recapt',
-        'id_question_detail',
+        'recapt_id',
+        'question_detail_id',
         'value'
     ];
 
     public function recapt()
     {
-        return $this->belongsTo(Recapt::class, 'id_recapt');
+        return $this->belongsTo(Recapt::class, 'recapt_id');
     }
 
     public function questionDetail()
     {
-        return $this->belongsTo(QuestionDetail::class, 'id_question_detail');
+        return $this->belongsTo(QuestionDetail::class, 'question_detail_id');
     }
 }

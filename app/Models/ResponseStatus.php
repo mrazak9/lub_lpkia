@@ -14,7 +14,14 @@ class ResponseStatus extends Model
         'id_student',
         'id_response',
         'is_response',
+        'id_schedule',
+        'id_question',
     ];
+    
+    public function schedule()
+    {
+        return $this->belongsTo(Schedule::class, 'id_schedule');
+    }
 
     public function student()
     {
@@ -24,5 +31,10 @@ class ResponseStatus extends Model
     public function response()
     {
         return $this->belongsTo(Response::class, 'id_response');
+    }
+
+    public function question()
+    {
+        return $this->belongsTo(Question::class, 'id_question');
     }
 }

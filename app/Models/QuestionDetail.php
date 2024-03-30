@@ -13,24 +13,24 @@ class QuestionDetail extends Model
     protected $fillable = [
         'question',
         'sequence',
-        'question_group_id',
-        'question_id',
-        'answer_id'
+        'id_question_group',
+        'id_question',
+        'id_answer'
     ];
 
     public function question()
     {
-        return $this->belongsTo(Question::class);
+        return $this->belongsTo(Question::class, 'id_question');
     }
 
     public function answer()
     {
-        return $this->belongsTo(Answer::class);
+        return $this->belongsTo(Answer::class, 'id_answer');
     }
 
     public function questionGroup()
     {
-        return $this->belongsTo(QuestionGroup::class);
+        return $this->belongsTo(QuestionGroup::class, 'id_question_group');
     }
 
     public function recaptDetail()

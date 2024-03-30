@@ -12,19 +12,13 @@ class Recapt extends Model
 
     protected $fillable = [
         'id_question',
-        'id_response',
         'id_schedule',
-        'total_response',
+        'total_responsdent',
     ];
 
     public function question()
     {
         return $this->belongsTo(Question::class, 'id_question');
-    }
-
-    public function response()
-    {
-        return $this->belongsTo(Response::class, 'id_response');
     }
 
     public function schedule()

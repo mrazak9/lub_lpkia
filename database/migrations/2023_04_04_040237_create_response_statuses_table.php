@@ -15,8 +15,9 @@ class CreateResponseStatusesTable extends Migration
     {
         Schema::create('response_statuses', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_response')->constrained('responses')->onDelete('cascade');
             $table->foreignId('id_student')->constrained('students')->onDelete('cascade');
+            $table->foreignId('id_schedule')->constrained('schedules')->onDelete('cascade');
+            $table->foreignId('id_response')->nullable()->constrained('responses')->onDelete('cascade');
             $table->boolean('is_response')->default(false);
             
             $table->timestamps();

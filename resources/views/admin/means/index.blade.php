@@ -26,7 +26,7 @@
 
                         <p hidden>{{ $tmp = 1 }}</p>
 
-                        <table id ="means-table" class="w-full data-table" aria-label="Table">
+                        <table id="means-table" class="w-full data-table" aria-label="Table">
                             <thead>
                                 <tr class="text-sm font-normal text-left text-gray-900 border-b border-b-gray-600">
                                     <th class="py-4">No</th>
@@ -91,11 +91,9 @@
                                 @empty
                                     {{-- empty --}}
                                 @endforelse
-
                             </tbody>
                         </table>
                         <br>
-                        {{-- {{ $users->links() }} --}}
                     </div>
                 </main>
             </div>

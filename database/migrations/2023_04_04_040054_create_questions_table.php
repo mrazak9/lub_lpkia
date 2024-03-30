@@ -18,10 +18,10 @@ class CreateQuestionsTable extends Migration
             $table->string('name');
             $table->integer('total');
             $table->string('notes')->nullable();
-            $table->foreignId('id_schedule')->constrained('schedules')->onDelete('cascade');
             $table->date('start_date');
             $table->date('end_date');
             $table->boolean('is_active')->default(false);
+            $table->string('type')->default('student');
             $table->timestamps();
             $table->softDeletes();
         });

@@ -17,7 +17,7 @@ class StudentController extends Controller
     {
         $students = Student::all();
 
-        return view('students.index', compact('students'));
+        return view('/admin/students.index', compact('students'));
     }
 
     /**
@@ -27,7 +27,7 @@ class StudentController extends Controller
      */
     public function create()
     {
-        return view('students.create');
+        return view('/admin/students.create');
     }
 
     /**
@@ -38,30 +38,40 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required|string',
-            'email' => 'required|string|email',
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email',
+            // 'password' => 'required|min:6|confirmed',
             'classroom' => 'required|string|max:5',
-            'code' => 'required|string|max:11|unique:students,code',
+            'code' => 'required|string|max:11',
             'prodi' => 'nullable|string|max:255',
         ]);
 
+        // create new user
         $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => encrypt($request->code),
+            'name' => $validatedData['name'],
+            'email' => $validatedData['email'],
             'role' => 'student',
+            'password' => bcrypt($validatedData['code']),
         ]);
 
-        Student::create([
-            'id_user' => $user->id,
-            'classroom' => $request->classroom,
-            'code' => $request->code,
-            'prodi' => $request->prodi,
+        // create new student
+        $student = new Student([
+            'classroom' => $validatedData['classroom'],
+            'code' => $validatedData['code'],
+            'prodi' => $validatedData['prodi'],
         ]);
+
+        // associate the user with the student
+        $student->user()->associate($user);
+
+        // save the student and user
+        $student->save();
+
         return redirect()->route('students.index')
             ->with('success', 'Student created successfully.');
     }
+
 
     /**
      * Display the specified resource.
@@ -71,7 +81,7 @@ class StudentController extends Controller
      */
     public function show(Student $student)
     {
-        return view('students.show', compact('student'));
+        return view('/admin/students.show', compact('student'));
     }
 
     /**
@@ -82,7 +92,7 @@ class StudentController extends Controller
      */
     public function edit(Student $student)
     {
-        return view('students.edit', compact('student'));
+        return view('/admin/students.edit', compact('student'));
     }
 
     /**
@@ -95,21 +105,27 @@ class StudentController extends Controller
     public function update(Request $request, Student $student)
     {
         $request->validate([
-            'id_user' => 'required',
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email,' . $student->user->id,
             'classroom' => 'required|string|max:5',
             'code' => 'required|string|max:11|unique:students,code,' . $student->id,
             'prodi' => 'nullable|string|max:255',
         ]);
 
-        $student->update([
-            'id_user' => $request->id_user,
-            'classroom' => $request->classroom,
-            'code' => $request->code,
-            'prodi' => $request->prodi,
-        ]);
+        $student->classroom = $request->input('classroom');
+        $student->code = $request->input('code');
+        $student->prodi = $request->input('prodi');
 
-        return redirect()->route('students.index')
-            ->with('success', 'Student updated successfully.');
+        $user = User::findOrFail($student->id_user);
+
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->role = 'student';
+        $user->password = bcrypt($request->input('code'));
+        $student->save();
+        $user->save();
+
+        return redirect()->route('students.index')->with('success', 'Student and user data has been updated.');
     }
 
     /**
@@ -120,9 +136,11 @@ class StudentController extends Controller
      */
     public function destroy(Student $student)
     {
-        $student->delete();
+        $user = $student->user;
 
-        return redirect()->route('students.index')
-            ->with('success', 'Student deleted successfully.');
+        $student->delete();
+        $user->delete();
+
+        return redirect()->route('students.index')->with('success', 'Student has been deleted.');
     }
 }

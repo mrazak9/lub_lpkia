@@ -14,16 +14,11 @@ class Question extends Model
         'name',
         'total',
         'notes',
-        'id_schedule',
         'start_date',
         'end_date',
         'is_active',
+        'type', //student, lecturer, employee
     ];
-
-    public function schedule()
-    {
-        return $this->belongsTo(Schedule::class, 'id_schedule');
-    }
 
     public function questionDetails()
     {
@@ -33,5 +28,10 @@ class Question extends Model
     public function responses()
     {
         return $this->hasMany(Response::class, 'id_question');
+    }
+
+    public function response_statuses()
+    {
+        return $this->hasMany(ResponseStatus::class, 'id_question');
     }
 }

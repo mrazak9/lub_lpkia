@@ -51,7 +51,7 @@
         <ul>
             <li class="relative px-6 py-3">
                 <a class="inline-flex items-center w-full text-sm font-light transition-colors duration-150 hover:text-gray-800"
-                    href="#">
+                    href="{{ route('questions.index') }}">
 
                     @if (request()->is('member/service') ||
                             request()->is('member/service/*') ||
@@ -83,7 +83,7 @@
                                 stroke="#082431" stroke-width="1.5" />
                         </svg>
                     @endif
-                    <span class="ml-4">All Prospect</span>
+                    <span class="ml-4">List LUB</span>
                     <span
                         class="inline-flex items-center justify-center px-3 py-2 ml-auto text-xs font-bold leading-none text-green-500 rounded-full bg-serv-green-badge">
                         {{-- {{ $data['prospects'] }} --}}
@@ -95,7 +95,7 @@
             <li class="relative px-6 py-3">
 
                 <a class="inline-flex items-center w-full text-sm font-light transition-colors duration-150 hover:text-gray-800"
-                    href="#">
+                    href={{ route('answers.index') }}>
 
                     @if (request()->is('member/request') ||
                             request()->is('member/request/*') ||
@@ -125,7 +125,7 @@
                         </svg>
                     @endif
 
-                    <span class="ml-4">All Users</span>
+                    <span class="ml-4">Master Jawaban</span>
                     <span
                         class="inline-flex items-center justify-center px-3 py-2 ml-auto text-xs font-bold leading-none text-green-500 rounded-full bg-serv-green-badge">
                         {{-- {{ $data['userPartisipan'] }} --}}
@@ -137,7 +137,7 @@
             <li class="relative px-6 py-3">
 
                 <a class="inline-flex items-center w-full text-sm font-light transition-colors duration-150 hover:text-gray-800"
-                    href="#">
+                    href="{{ route('schedules.index') }}">
 
                     @if (request()->is('member/order') ||
                             request()->is('member/order/*') ||
@@ -170,7 +170,7 @@
                                 stroke-width="1.5" stroke-linecap="round" />
                         </svg>
                     @endif
-                    <span class="ml-4">PMM</span>
+                    <span class="ml-4">Jadwal</span>
                     <span
                         class="inline-flex items-center justify-center px-3 py-2 ml-auto text-xs font-bold leading-none text-green-500 rounded-full bg-serv-green-badge">
                         {{-- {{ $data['pmm'] }} --}}
@@ -180,7 +180,7 @@
             <li class="relative px-6 py-3">
 
                 <a class="inline-flex items-center w-full text-sm font-light transition-colors duration-150 hover:text-gray-800"
-                    href="#">
+                    href="{{ route('means.index') }}">
 
                     @if (request()->is('member/order') ||
                             request()->is('member/order/*') ||
@@ -213,7 +213,7 @@
                                 stroke-width="1.5" stroke-linecap="round" />
                         </svg>
                     @endif
-                    <span class="ml-4">PPG</span>
+                    <span class="ml-4">Master Nilai</span>
                     <span
                         class="inline-flex items-center justify-center px-3 py-2 ml-auto text-xs font-bold leading-none text-green-500 rounded-full bg-serv-green-badge">
                         {{-- {{ $data['ppg'] }} --}}
@@ -223,7 +223,7 @@
             <li class="relative px-6 py-3">
 
                 <a class="inline-flex items-center w-full text-sm font-light transition-colors duration-150 hover:text-gray-800"
-                    href="#">
+                    href="{{ route('students.index') }}">
 
                     @if (request()->is('member/order') ||
                             request()->is('member/order/*') ||
@@ -256,7 +256,7 @@
                                 stroke-width="1.5" stroke-linecap="round" />
                         </svg>
                     @endif
-                    <span class="ml-4">PPA</span>
+                    <span class="ml-4">Student</span>
                     <span
                         class="inline-flex items-center justify-center px-3 py-2 ml-auto text-xs font-bold leading-none text-green-500 rounded-full bg-serv-green-badge">
                         {{-- {{ $data['ppa'] }} --}}
@@ -267,7 +267,7 @@
             <li class="relative px-6 py-3">
 
                 <a class="inline-flex items-center w-full text-sm font-light transition-colors duration-150 hover:text-gray-800"
-                    href="#">
+                    href="{{ route('lecturers.index') }}">
 
                     @if (request()->is('admin/profile') ||
                             request()->is('admin/profile/*') ||
@@ -309,7 +309,7 @@
                         </svg>
                     @endif
 
-                    <span class="ml-4">Edit Profile</span>
+                    <span class="ml-4">Data Dosen</span>
                 </a>
             </li>
 
